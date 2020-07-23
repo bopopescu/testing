@@ -73,15 +73,15 @@ def gpt_graph(outputfilename):
     requestSkeleton +=  '   <node id=\"Collocate_WaterBodies">\n'
     requestSkeleton +=  '       <operator>Collocate</operator>\n'
     requestSkeleton +=  '       <sources>\n'
-    requestSkeleton +=  '           <master>${master}</master>\n'
-    requestSkeleton +=  '           <slave>Reprojected</slave>\n'
+    requestSkeleton +=  '           <main>${main}</main>\n'
+    requestSkeleton +=  '           <subordinate>Reprojected</subordinate>\n'
     requestSkeleton +=  '       </sources>\n'
     requestSkeleton +=  '       <parameters>\n'
     requestSkeleton +=  '           <targetProductType>COLLOCATED</targetProductType>\n'
-    requestSkeleton +=  '           <renameMasterComponents>true</renameMasterComponents>\n'
-    requestSkeleton +=  '           <renameSlaveComponents>true</renameSlaveComponents>\n'
-    requestSkeleton +=  '           <masterComponentPattern>nameID</masterComponentPattern>\n'
-    requestSkeleton +=  '           <slaveComponentPattern>${ORIGINAL_NAME}</slaveComponentPattern>\n'
+    requestSkeleton +=  '           <renameMainComponents>true</renameMainComponents>\n'
+    requestSkeleton +=  '           <renameSubordinateComponents>true</renameSubordinateComponents>\n'
+    requestSkeleton +=  '           <mainComponentPattern>nameID</mainComponentPattern>\n'
+    requestSkeleton +=  '           <subordinateComponentPattern>${ORIGINAL_NAME}</subordinateComponentPattern>\n'
     requestSkeleton +=  '           <resamplingType>NEAREST_NEIGHBOUR</resamplingType>\n'
     requestSkeleton +=  '       </parameters>\n' 
     requestSkeleton +=  '   </node>\n'    
@@ -163,7 +163,7 @@ for merisFile in srcList:
     requestFile.close()     
      
     print("Processing: Processing file " + merisFile + " ...")
-    ExCommand = beam.gptProcessor + " " + xmlrequest  + " -Ssource=" + inputFileName + ' -Smaster=/home/jobel/Dropbox/GIS_repository/Himmer_wmask.tiff -f CVS -t ' + outputFile 
+    ExCommand = beam.gptProcessor + " " + xmlrequest  + " -Ssource=" + inputFileName + ' -Smain=/home/jobel/Dropbox/GIS_repository/Himmer_wmask.tiff -f CVS -t ' + outputFile 
     #ExCommand = beam.gptProcessor + " " + xmlrequest  + " -Ssource=" + inputFileName + ' -t ' + outputFile 
     print(ExCommand+'\\')    
  
